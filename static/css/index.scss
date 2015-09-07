@@ -1,0 +1,116 @@
+.test-ul{background: url(../images/test.png) no-repeat;}
+.test-ul li{padding: 10px;}
+.test-ul li{min-height: 30px;}
+
+/* 导入 */
+/*@import 'reset';*/
+
+/* 变量,一般用于属性值、值后面加上!default、特殊变量#{}，可以到处用，key、value都可以用*/
+$fontSize:'微软雅黑';
+.test-a{
+	font-family: $fontSize;
+}
+/* 一维数据 ，多值变量 nth($var,$index)*/
+$px: 5px 10px 20px 30px;
+/*二维数据，相当于js中的二维数组*/
+/*$px: 5px 10px, 20px 30px;*/
+
+/* 嵌套 */
+.test-b{
+	ul{
+		width:200px;
+	}
+	li{
+		display: inline-block;
+	}
+	a{
+		color: red;
+	}
+}
+/* 属性嵌套 */
+.fakeshadow {
+  border: {
+    style: solid;
+    left: {
+      width: 4px;
+      color: #888;
+    }
+    right: {
+      width: 2px;
+      color: #ccc;
+    }
+  }
+}
+
+/* 多个选择器跳出 @at-root*/
+.parent-3 {
+  background:#f00;
+  @at-root {
+    .child1 {
+      width:300px;
+    }
+    .child2 {
+      width:400px;
+    }
+  }
+}
+
+
+/* mixin 代码片段 可以传参 */
+@mixin box-sizing ($sizing) {
+    -webkit-box-sizing:$sizing;     
+       -moz-box-sizing:$sizing;
+            box-sizing:$sizing;
+}
+.box-border{
+    border:1px solid #ccc;
+    @include box-sizing(border-box);
+}
+
+/* 继承 */
+.message {
+  border: 1px solid #ccc;
+  padding: 10px;
+  color: #333;
+}
+
+.success {
+  @extend .message;
+  border-color: green;
+}
+
+.error {
+  @extend .message;
+  border-color: red;
+}
+
+.warning {
+  @extend .message;
+  border-color: yellow;
+}
+/* 编译结果
+.message, .success, .error, .warning {
+  border: 1px solid #cccccc;
+  padding: 10px;
+  color: #333;
+}
+ */
+
+/* 条件判断
+p {
+  @if $type == ocean {
+    color: blue;
+  } @else if $type == matador {
+    color: red;
+  } @else if $type == monster {
+    color: green;
+  } @else {
+    color: black;
+  }
+}
+*/
+
+/* 三元表达式 
+if(true, 1px, 2px) => 1px
+if(false, 1px, 2px) => 2px
+*/
